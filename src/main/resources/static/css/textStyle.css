@@ -1,0 +1,133 @@
+@charset "ISO-8859-1";
+
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+
+body {
+	background-color: #000;
+	margin: 120px;
+}
+
+span {
+	color: white;
+}
+
+#text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+.text-to-download {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #080808;
+    border-radius: 10px;
+}
+  
+#text-to-download {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    max-width: 60rem;
+    padding: 1rem;
+    color: white;
+    border-width: 3px;
+    border-style: solid;
+  	border-image: 
+	    linear-gradient(
+	      to bottom, 
+	      red, 
+	      blue
+	    ) 1 100%;
+	background-color: #080808;
+}
+
+.text-to-download span:first-child {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+#nav a {
+  background:
+    linear-gradient(
+      to right,
+      rgba(100, 200, 200, 1),
+      rgba(100, 200, 200, 1)
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 0, 0, 1),
+      rgba(255, 0, 180, 1),
+      rgba(0, 100, 200, 1)
+  );
+  background-size: 0 3px, 0 3px;
+  border-radius: 10px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+  padding: 5px;
+} 
+
+
+
+
+#nav a:hover {
+  background-size: 0 3px, 100% 3px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+
+#links:hover {
+	animation-name: link;
+	animation-fill-mode: both;
+	animation-duration: 0.5s;
+}
+
+
+@keyframes link {
+	100% {width: 30px; height: 30px;}
+}
+
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

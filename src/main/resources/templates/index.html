@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Choose File</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+	
+	
+	
+	<div class="content">
+	
+		<nav id="nav" class="py-1 navbar fixed-top navbar-expand-lg">
+  			<div class="container-fluid">
+		    	<a class="navbar-brand mb-2" th:href="@{/}" style="color: white;">Transcription app</a>
+  			</div>
+		</nav>	
+		
+	
+		<form id="form" action="#" th:action="@{/upload}"  method="POST" enctype="multipart/form-data">
+					
+			<div>
+				<input type="file" name="file" class="form-control mb-3" accept=".3ga, .8svx, .aac, .ac3, .aif, .aiff, .alac, .amr, .ape, .au, .dss, 
+				.flac, .flv, .m4a, .m4b, .m4p, .m4r, .mp3, .mpga, .ogg, .oga, .mogg, 
+				.opus, .qcp, .tta, .voc, .wav, .wma, .wv, .webm, .MTS, .M2TS, .TS, .mov, .mp2, .mp4, .m4p, .m4v, .mxf" required>
+				
+				
+					<p id="p1" class="mb-3" style="color:white;">Audio Language</p>
+					<select id="language" name="language" class="form-control mb-4">
+	                    <option th:each="lang : ${languages}" th:value="${lang.key}" th:text="${lang.value}" th:if="${lang.key == 'en'}" selected>
+	  					<option th:each="lang : ${languages}" th:value="${lang.key}" th:text="${lang.value}" th:unless="${lang.key == 'en'}">
+	                </select>
+                                
+                	<p id="p2" class="mb-3" style="color:white;">Profanity Filtering</p>
+	                <select name="profanity" class="form-control mb-4">
+	                	<option th:text="Enabled" th:value="true"></option>
+	                	<option selected th:text="Disabled" th:value="false"></option>
+	                </select>
+
+                
+	                <div id="speakerLabels">
+	                <p id="p3" class="mb-3" style="color:white;">Speaker Labels</p>
+		                <select name="labels" class="form-control mb-4">
+		                	<option th:text="Enabled" th:value="true"></option>
+		                	<option selected th:text="Disabled" th:value="false"></option>
+		                </select>
+	               	</div>
+			</div>
+			<button id="button1" type="submit" class="glow-on-hover">Upload</button>
+			
+		</form>
+		
+		
+	</div>
+	
+	<div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+      <br>
+      <div id="loader-text">
+	      <p style="color:white;">Please wait</p>
+	      <p style="color:white;">This may take a while</p>
+	  </div>
+    </div>
+    
+    
+    
+
+	<script th:inline="javascript">
+	
+	
+	
+		$(document).ready(function() {
+			var showSpeakerLabelsLanguages = ["en", "en_au", "en_uk", "en_us"];
+			$("#language").change(function() {
+			  if (showSpeakerLabelsLanguages.indexOf($(this).val()) !== -1) {
+			     $("#speakerLabels").show();
+		      } else {
+			     $("#speakerLabels").hide();
+			     $("[name='labels']").val("false");
+			  }
+			});
+		});
+		
+		$(document).ready(function () {
+		    $('#form').submit(function () {
+		        $('.loader-wrapper').fadeIn('slow');
+		        $('#loader-text').css('visibility', 'visible');
+		    });
+		});
+	
+	    $(window).on("load",function(){
+		    $(".loader-wrapper").fadeOut("slow");
+		    $('#loader-text').css('visibility', 'hidden');
+	    });
+        
+       
+    </script>
+</body>
+</html>
